@@ -40,10 +40,13 @@
                 $division = $_POST['division'];
                 $date = date("Y-m-d");
     
-                $sql_insert = "INSERT INTO user ( name, division, email, date) value ('$name','$division','$email','$date')";
+                $sql_insert = "INSERT INTO user ( name, division, email, date) value (?,?,?,?)";
                 $stmt = $conn->prepare($sql_insert);
+                $stmt->bindValue(1,$name);
+                $stmt->bindValue(2, $division);
+                $stmt->bindValue(3, $email);
+                $stmt->bindValue(4, $date);
                 $stmt->execute();
-                var_dump($stmt->execute());
     
                 echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
             } catch(Exception $e){
@@ -51,7 +54,7 @@
             }
         } else if (isset($_POST['loadData'])) {
             try {
-                $sql_select = "SELECT * FROM user";
+                $sql_select = "SELECT * FROM [dbo].[user]";
                 $stmt = $conn->query($sql_select);
                 $registrans = $stmt->fetchAll();
                 if (count($registrans) > 0) {
