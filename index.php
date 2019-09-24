@@ -32,7 +32,7 @@
 
     <h1>Form Register Anggota Lab Chevalier <br>Telkom University</h1>
     <p>Tolong isi form pendaftaran dengan serius dan teliti!</p>
-    <form action="index.php" method="POST">
+    <form action="index.php" method="post" enctype="multipart/form-data">
         Nama <input type="text" name="name"><br><br>
         Email <input type="email" name="email"><br><br>
         Divisi <input type="text" name="division"><br><br>
