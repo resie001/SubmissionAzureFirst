@@ -43,7 +43,7 @@
                 $sql_insert = "INSERT INTO user ( name, division, email, date) value ('$name','$division','$email','$date')";
                 $stmt = $conn->prepare($sql_insert);
                 $stmt->execute();
-                var_dump($stmt);
+                var_dump($stmt->execute());
     
                 echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
             } catch(Exception $e){
