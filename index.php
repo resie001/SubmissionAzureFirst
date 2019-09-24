@@ -57,6 +57,7 @@
                 $sql_select = "SELECT * FROM [dbo].[user]";
                 $stmt = $conn->query($sql_select);
                 $registrans = $stmt->fetchAll();
+                var_dump($registrans);
                 if (count($registrans) > 0) {
                     echo "<h1>Orang Yang Telah Mendaftar di Chevalier Lab</h1>";
                     echo "<table>";
