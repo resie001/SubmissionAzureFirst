@@ -48,7 +48,7 @@
             $division = $_POST['division'];
             $date = date("Y-m-d");
 
-            $sql_insert = "INSERT INTO user ('name','division','email','date') VALUES (?,?,?,?)";
+            $sql_insert = "INSERT INTO 'user' ('name','division','email','date') VALUES (?,?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $division);
