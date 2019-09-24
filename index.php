@@ -6,7 +6,7 @@
     $db   = "submission";
 
     try {
-        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
+        $conn = new PDO("sqlsrv:server = [$host]; Database = [$db]", $user, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } catch(Exception $e) {
         echo "Failed: " . $e;
@@ -31,9 +31,9 @@
     <h1>Form Register Anggota Lab Chevalier <br>Telkom University</h1>
     <p>Tolong isi form pendaftaran dengan serius dan teliti!</p>
     <form action="" method="POST">
-        Nama <input type="text" name="name" required><br><br>
-        Email <input type="email" name="email" required><br><br>
-        Divisi <input type="text" name="division" required><br><br>
+        Nama <input type="text" name="name"><br><br>
+        Email <input type="email" name="email"><br><br>
+        Divisi <input type="text" name="division"><br><br>
         <input type="submit" name="submit" value="Submit"> <input type="submit" name="loadData" value="Load Data"> <input type="reset">
     </form>
 
