@@ -29,17 +29,13 @@
     $pass = "Corazon123";
     $db   = "submission";
 
-    $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
-    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-   var_dump($conn);
-    // try{
-    //     $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw"=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
-    //     $serverName = "tcp:serverdicoding.database.windows.net,1433";
-    //     $conn = sqlsrv_connect($serverName, $connectionInfo);
-    //     var_dump($conn);
-    // } catch (Exception $e){
-    //     echo "Failed: ".$e;
-    // }
+    
+    try{
+       $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
+        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    } catch (Exception $e){
+        echo "Failed: ".$e;
+    }
 
     if (isset($_POST['submit'])) {
         try{
