@@ -1,12 +1,12 @@
 <?php
 
     $host = "serverdicoding.database.windows.net";
-    $user = "aderesie";
+    $admin = "aderesie";
     $pass = "Corazon123";
     $db   = "submission";
 
     try {
-        $conn = new PDO("sqlsrv:server = [$host]; Database = [$db]", $user, $pass);
+        $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } catch(Exception $e) {
         echo "Failed: " . $e;
