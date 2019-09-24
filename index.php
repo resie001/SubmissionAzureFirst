@@ -55,8 +55,8 @@
         } else if (isset($_POST['loadData'])) {
             try {
                 $sql_select = "SELECT * FROM [dbo].[user]";
+                var_dump($sql_select);
                 $stmt = $conn->query($sql_select);
-                var_dump($stmt);
                 $registrans = $stmt->fetchAll();
                 
                 if (count($registrans) > 0) {
