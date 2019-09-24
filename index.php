@@ -12,6 +12,11 @@
     </style>
 </head>
 <body>
+<?php
+
+phpinfo();
+
+?>
 
     <h1>Form Register Anggota Lab Chevalier <br>Telkom University</h1>
     <p>Tolong isi form pendaftaran dengan serius dan teliti!</p>
