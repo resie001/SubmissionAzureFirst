@@ -34,6 +34,7 @@
         $serverName = "tcp:serverdicoding.database.windows.net,1433";
         $conn = sqlsrv_connect($serverName, $connectionInfo);
         if (isset($_POST['submit'])) {
+            var_dump($_POST);
             try{
                 $name = $_POST['name'];
                 $email = $_POST['email'];
