@@ -44,7 +44,7 @@
             $division = $_POST['division'];
             $date = date("Y-m-d");
 
-            $sql_insert = "INSERT INTO user (name,division,email,date) VALUES (?,?,?,?)";
+            $sql_insert = "INSERT INTO Registran(name,division,email,date) VALUES(?,?,?,?)";
             //$sql_insert = "INSERT INTO user (name,division,email,date) VALUES ('$name','$division','$email','$date')"; 
             // $sql_select = "SELECT * FROM user";
             $stmt = $conn->prepare($sql_insert);
@@ -60,7 +60,7 @@
         echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
     } else if (isset($_POST['loadData'])) {
         try {
-            $sql_select = "SELECT * FROM user";
+            $sql_select = "SELECT * FROM Registran";
             $stmt = $conn->query($sql_select);
             
             $registrans = $stmt->fetchAll();
