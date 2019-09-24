@@ -1,15 +1,17 @@
 <?php
 
-    $host = "serverdicoding.database.windows.net";
-    $admin = "aderesie";
-    $pass = "Corazon123";
-    $db   = "submission";
+    // $host = "serverdicoding.database.windows.net";
+    // $admin = "aderesie";
+    // $pass = "Corazon123";
+    // $db   = "submission";
 
     try {
-        $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw
-        "=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
-        $serverName = "tcp:serverdicoding.database.windows.net,1433";
-        $conn = sqlsrv_connect($serverName, $connectionInfo);
+        // $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw
+        // "=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
+        // $serverName = "tcp:serverdicoding.database.windows.net,1433";
+        // $conn = sqlsrv_connect($serverName, $connectionInfo);
+        $conn = new PDO("sqlsrv:server = tcp:serverdicoding.database.windows.net,1433; Database = submission","aderesie","Corazon123");
+        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } catch(Exception $e) {
         echo "Failed: " . $e;
     }
