@@ -29,77 +29,67 @@
     $pass = "Corazon123";
     $db   = "submission";
 
-    try {
+    try{
+        $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw"=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
+        $serverName = "tcp:serverdicoding.database.windows.net,1433";
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
+    } catch (Exception $e){
+        echo "Failed: ".$e;
+    }
+
+    if (isset($_POST['submit'])) {
         try{
-            $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw"=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
-            $serverName = "tcp:serverdicoding.database.windows.net,1433";
-            $conn = sqlsrv_connect($serverName, $connectionInfo);
-        } catch (Exception $e){
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $division = $_POST['division'];
+            $date = date("Y-m-d");
+
+            $sql_insert = "INSERT INTO user ( name, division, email, date) VALUES (?,?,?,?)";
+            $stmt = $conn->prepare($sql_insert);
+            $stmt->bindValue(1, $name);
+            $stmt->bindValue(2, $division);
+            $stmt->bindValue(3, $email);
+            $stmt->bindValue(4, $date);
+            $stmt->execute();
+
+            
+        } catch(Exception $e){
             echo "Failed: ".$e;
         }
-        
-        // try{
-        //     $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
-        //     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-        // } catch(Exception $e){
-        //     echo "Failed: ".$e;
-        // }
-        if (isset($_POST['submit'])) {
-            try{
-                $name = $_POST['name'];
-                $email = $_POST['email'];
-                $division = $_POST['division'];
-                $date = date("Y-m-d");
-    
-                $sql_insert = "INSERT INTO user ( name, division, email, date) VALUES (?,?,?,?)";
-                $stmt = $conn->prepare($sql_insert);
-                $stmt->bindValue(1, $name);
-                $stmt->bindValue(2, $division);
-                $stmt->bindValue(3, $email);
-                $stmt->bindValue(4, $date);
-                $stmt->execute();
-    
-                
-            } catch(Exception $e){
-                echo "Failed: ".$e;
-            }
-            echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
-        } else if (isset($_POST['loadData'])) {
-            try {
-                $sql_select = "SELECT * FROM [dbo].[user]";
-                $stmt = $conn->query($sql_select);
-                
-                $registrans = $stmt->fetchAll();
-                
-                if (count($registrans) > 0) {
-                    echo "<h1>Orang Yang Telah Mendaftar di Chevalier Lab</h1>";
-                    echo "<table>";
+        echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
+    } else if (isset($_POST['loadData'])) {
+        try {
+            $sql_select = "SELECT * FROM [dbo].[user]";
+            $stmt = $conn->query($sql_select);
+            
+            $registrans = $stmt->fetchAll();
+            
+            if (count($registrans) > 0) {
+                echo "<h1>Orang Yang Telah Mendaftar di Chevalier Lab</h1>";
+                echo "<table>";
+                echo "<tr>";
+                echo "<th>Nama</th>";
+                echo "<th>Divisi</th>";
+                echo "<th>Email</th>";
+                echo "<th>Date</th>";
+                echo "</tr>";
+                foreach($registrans as $value){
                     echo "<tr>";
-                    echo "<th>Nama</th>";
-                    echo "<th>Divisi</th>";
-                    echo "<th>Email</th>";
-                    echo "<th>Date</th>";
+                    echo "<td>".$value['name']."</td>";
+                    echo "<td>".$value['division']."</td>";
+                    echo "<td>".$value['email']."</td>";
+                    echo "<td>".$value['date']."</td>";
                     echo "</tr>";
-                    foreach($registrans as $value){
-                        echo "<tr>";
-                        echo "<td>".$value['name']."</td>";
-                        echo "<td>".$value['division']."</td>";
-                        echo "<td>".$value['email']."</td>";
-                        echo "<td>".$value['date']."</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                } else {
-                    echo "<h1>Belum Ada Yang Mendaftar di Lab Chevalier</h1>";
                 }
-            } catch(Exception $e){
-                echo "Failed: ".$e;
+                echo "</table>";
+            } else {
+                echo "<h1>Belum Ada Yang Mendaftar di Lab Chevalier</h1>";
             }
+        } catch(Exception $e){
+            echo "Failed: ".$e;
         }
-    } catch(Exception $e) {
-        echo "Failed: " . $e;
     }
-    
+
 
 ?>
     
