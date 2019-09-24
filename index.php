@@ -12,11 +12,6 @@
     </style>
 </head>
 <body>
-<?php
-
-phpinfo();
-
-?>
 
     <h1>Form Register Anggota Lab Chevalier <br>Telkom University</h1>
     <p>Tolong isi form pendaftaran dengan serius dan teliti!</p>
@@ -34,7 +29,7 @@ phpinfo();
     $pass = "Corazon123";
     $db   = "submission";
 
-    $$conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
+    $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     var_dump($conn);
     // try{
