@@ -31,7 +31,7 @@
 
     $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-   // var_dump($conn);
+   var_dump($conn);
     // try{
     //     $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw"=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
     //     $serverName = "tcp:serverdicoding.database.windows.net,1433";
