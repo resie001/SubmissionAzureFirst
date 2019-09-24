@@ -34,7 +34,6 @@
         $serverName = "tcp:serverdicoding.database.windows.net,1433";
         $conn = sqlsrv_connect($serverName, $connectionInfo);
         if (isset($_POST['submit'])) {
-            var_dump($_POST);
             try{
                 $name = $_POST['name'];
                 $email = $_POST['email'];
@@ -42,12 +41,14 @@
                 $date = date("Y-m-d");
     
                 $sql_insert = "INSERT INTO user ( name, division, email, date) value (?,?,?,?)";
+                var_dump($sql_insert);
                 $stmt = $conn->prepare($sql_insert);
                 $stmt->bindValue(1,$name);
                 $stmt->bindValue(2, $division);
                 $stmt->bindValue(3, $email);
                 $stmt->bindValue(4, $date);
                 $stmt->execute();
+                var_dump($stmt);
     
                 echo "<h1>Selamat Kamu Telah Mendaftar di Lab Chevalier</h1>";
             } catch(Exception $e){
