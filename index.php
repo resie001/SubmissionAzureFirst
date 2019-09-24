@@ -6,8 +6,10 @@
     $db   = "submission";
 
     try {
-        $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
-        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        $connectionInfo = array("UID"=> "aderesie@serverdicoding","pdw
+        "=> $pass, "Database"=> $db, "LoginTimeout"=> 30, "Encrypt"=> 1, "TrustServerCertificate"=> 0);
+        $serverName = "tcp:serverdicoding.database.windows.net,1433";
+        $conn = sqlsrv_connect($serverName, $connectionInfo);
     } catch(Exception $e) {
         echo "Failed: " . $e;
     }
