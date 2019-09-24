@@ -24,7 +24,7 @@
 
 <?php
 
-    $host = "serverdicoding.database.windows.net,1433";
+    $host = "serverdicoding.database.windows.net";
     $admin = "aderesie";
     $pass = "Corazon123";
     $db   = "submission";
