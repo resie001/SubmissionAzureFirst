@@ -19,7 +19,7 @@
         Nama <input type="text" name="name"><br><br>
         Email <input type="email" name="email"><br><br>
         Divisi <input type="text" name="division"><br><br>
-        <input type="submit" name="submit" value="Submit"> <input type="submit" name="loadData" value="Load Data"> <input type="reset">
+        <input type="submit" name="submit" value="Submit"> <input type="submit" name="loadData" value="Load Data">
     </form>
 
 <?php
@@ -28,7 +28,6 @@
     $admin = "aderesie";
     $pass = "Corazon123";
     $db   = "submission";
-
     
     try{
        $conn = new PDO("sqlsrv:server = $host; Database = $db", $admin, $pass);
@@ -36,24 +35,19 @@
     } catch (Exception $e){
         echo "Failed: ".$e;
     }
-
     if (isset($_POST['submit'])) {
         try{
             $name = $_POST['name'];
             $email = $_POST['email'];
             $division = $_POST['division'];
             $date = date("Y-m-d");
-
             $sql_insert = "INSERT INTO Registran(name,division,email,date) VALUES(?,?,?,?)";
-            //$sql_insert = "INSERT INTO user (name,division,email,date) VALUES ('$name','$division','$email','$date')"; 
-            // $sql_select = "SELECT * FROM user";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $division);
             $stmt->bindValue(3, $email);
             $stmt->bindValue(4, $date);
-            $stmt->execute();
-            
+            $stmt->execute();      
         } catch(Exception $e){
             echo "Failed: ".$e;
         }
@@ -62,9 +56,7 @@
         try {
             $sql_select = "SELECT * FROM Registran";
             $stmt = $conn->query($sql_select);
-            
             $registrans = $stmt->fetchAll();
-            
             if (count($registrans) > 0) {
                 echo "<h1>Orang Yang Telah Mendaftar di Chevalier Lab</h1>";
                 echo "<table>";
